@@ -12,36 +12,14 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  "https://interview-quesions-generator.vercel.app",
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
-];
+// SIMPLE CORS
+app.use(cors());
 
-// Configure CORS with proper handling for both simple and preflight requests
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS origin not allowed"));
-      }
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    optionsSuccessStatus: 200,
-  }),
-);
-
+// Body parser
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
-
+// Test routes
 app.get("/", (req, res) => {
   res.send("Backend working");
 });
@@ -50,6 +28,7 @@ app.get("/test", (req, res) => {
   res.send("Test route working");
 });
 
+// Routes
 app.use("/api/auth", userRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/ai", aiRoutes);
