@@ -3,9 +3,10 @@ const cleanedBackendValue = rawBackendValue
   ? rawBackendValue.replace(/^nohttps?:\/\//i, "https://")
   : "";
 
-const backendHost = cleanedBackendValue ||
+const backendHost =
+  cleanedBackendValue ||
   (import.meta.env.MODE === "production"
-    ? "https://backend-woad-kappa-13.vercel.app"
+    ? "https://project-interview-questions.onrender.com"
     : "http://localhost:9000");
 
 export const API_PATHS = {
