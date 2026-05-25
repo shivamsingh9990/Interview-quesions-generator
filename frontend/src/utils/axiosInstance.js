@@ -8,7 +8,7 @@ const cleanedBackendValue = rawBackendValue
 const backendHost =
   cleanedBackendValue ||
   (import.meta.env.MODE === "production"
-    ? "https://project-interview-questions.onrender.comp"
+    ? "https://project-interview-questions.onrender.com"
     : "http://localhost:9000");
 
 const axiosInstance = axios.create({
