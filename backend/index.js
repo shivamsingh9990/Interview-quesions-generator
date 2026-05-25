@@ -20,6 +20,7 @@ const allowedOrigins = [
   "http://127.0.0.1:3000",
 ];
 
+// Configure CORS with proper handling for both simple and preflight requests
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -32,9 +33,9 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200,
   }),
 );
-app.options("*", cors());
 
 app.use(express.json());
 
