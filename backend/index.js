@@ -12,9 +12,23 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  "https://interview-quesions-generator.vercel.app",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+];
+
 app.use(
   cors({
-    origin: [/^http:\/\/localhost:\d+$/, /^https?:\/\/(.*\.)?vercel\.app$/],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS origin not allowed"));
+      }
+    },
     credentials: true,
   }),
 );
