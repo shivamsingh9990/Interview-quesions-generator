@@ -1,4 +1,4 @@
-const rawBackendValue = import.meta.env.VITE_API_BASE_URL?.trim();
+const rawBackendValue = import.meta.env.VITE_API_URL?.trim();
 const cleanedBackendValue = rawBackendValue
   ? rawBackendValue.replace(/^nohttps?:\/\//i, "https://")
   : "";
