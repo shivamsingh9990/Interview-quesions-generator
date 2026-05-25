@@ -5,9 +5,10 @@ const cleanedBackendValue = rawBackendValue
   ? rawBackendValue.replace(/^nohttps?:\/\//i, "https://")
   : "";
 
-const backendHost = cleanedBackendValue ||
+const backendHost =
+  cleanedBackendValue ||
   (import.meta.env.MODE === "production"
-    ? "https://backend-woad-kappa-13.vercel.app"
+    ? "https://project-interview-questions.onrender.comp"
     : "http://localhost:9000");
 
 const axiosInstance = axios.create({
